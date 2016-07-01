@@ -1,6 +1,35 @@
 Release Notes
 =============
 
+Version 1.10.8
+--------------
+
+**Bugs Fixed**
+
+* Ensure that ``inspect.getargspec()`` is only used with Python 2.6 where
+  required, as function has been removed in Python 3.6.
+
+Version 1.10.7
+--------------
+
+**Bugs Fixed**
+
+* The mod operator '%' was being incorrectly proxied in Python variant of
+  object proxy to the xor operator '^'.
+
+Version 1.10.6
+--------------
+
+**Bugs Fixed**
+
+* Registration of post import hook would fail with an exception if
+  registered after another import hook for the same target module had been
+  registered and the target module also imported.
+
+**New Features**
+
+* Support for testing with Travis CI added to repository.
+
 Version 1.10.5
 --------------
 

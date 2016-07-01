@@ -60,15 +60,15 @@ class _ObjectProxyMethods(object):
         return self.__wrapped__.__weakref__
 
 class _ObjectProxyMetaType(type):
-     def __new__(cls, name, bases, dictionary):
+    def __new__(cls, name, bases, dictionary):
          # Copy our special properties into the class so that they
          # always take precedence over attributes of the same name added
          # during construction of a derived class. This is to save
          # duplicating the implementation for them in all derived classes.
 
-         dictionary.update(vars(_ObjectProxyMethods))
+        dictionary.update(vars(_ObjectProxyMethods))
 
-         return type.__new__(cls, name, bases, dictionary)
+        return type.__new__(cls, name, bases, dictionary)
 
 class ObjectProxy(with_metaclass(_ObjectProxyMetaType)):
 
@@ -230,7 +230,7 @@ class ObjectProxy(with_metaclass(_ObjectProxyMetaType)):
         return self.__wrapped__ // other
 
     def __mod__(self, other):
-        return self.__wrapped__ ^ other
+        return self.__wrapped__ % other
 
     def __divmod__(self, other):
         return divmod(self.__wrapped__, other)
@@ -418,7 +418,7 @@ class CallableObjectProxy(ObjectProxy):
 class _FunctionWrapperBase(ObjectProxy):
 
     __slots__ = ('_self_instance', '_self_wrapper', '_self_enabled',
-            '_self_binding', '_self_parent') 
+            '_self_binding', '_self_parent')
 
     def __init__(self, wrapped, instance, wrapper, enabled=None,
             binding='function', parent=None):
